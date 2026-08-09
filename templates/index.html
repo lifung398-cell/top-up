@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHQR Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <div class="glass-card">
+            <div class="header">
+                <h1>KHQR Payment</h1>
+                <p>Fast, secure, and instant.</p>
+            </div>
+
+            <div id="payment-form" class="form-section">
+                <label for="payer-name">Payer Name (Optional)</label>
+                <div class="input-group">
+                    <input type="text" id="payer-name" placeholder="e.g. Sok">
+                </div>
+                
+                <label for="payer-remark">Remark (Optional)</label>
+                <div class="input-group">
+                    <input type="text" id="payer-remark" placeholder="e.g. Coffee">
+                </div>
+
+                <label for="amount">Enter Amount ({{ currency }})</label>
+                <div class="input-group">
+                    <span class="currency-symbol">{{ currency }}</span>
+                    <input type="number" id="amount" placeholder="0.00" step="0.01" min="0.01" required>
+                </div>
+                <button id="generate-btn" class="primary-btn">
+                    <span>Generate QR Code</span>
+                    <div class="spinner hidden"></div>
+                </button>
+                <div id="error-message" class="error-message hidden"></div>
+            </div>
+
+            <div id="qr-section" class="qr-section hidden">
+                <div class="qr-container">
+                    <img id="qr-image" src="" alt="KHQR Code">
+                </div>
+                <div class="payment-details">
+                    <p class="amount-display">Amount: <strong><span id="display-currency"></span> <span id="display-amount"></span></strong></p>
+                    <p class="bill-display">Bill Number: <span id="display-bill"></span></p>
+                </div>
+                
+                <div id="payer-details" class="payment-details hidden" style="margin-top: 15px; border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.1);">
+                    <!-- Dynamically populated by JS -->
+                </div>
+                
+                <div id="status-indicator" class="status-indicator pending" style="margin-top: 15px;">
+                    <div class="pulse-ring"></div>
+                    <span id="status-text">Awaiting Payment...</span>
+                </div>
+                
+                <button id="new-payment-btn" class="secondary-btn hidden">Create New Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
