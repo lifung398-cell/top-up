@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pollInterval;
     let currentPayerName = '';
     let currentPayerRemark = '';
-    let currentAmount = '';
+    let currentAmount = '1';
 
     generateBtn.addEventListener('click', async () => {
         const amount = amountInput.value;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startPolling(md5) {
         let attempts = 0;
-        const maxAttempts = 60; // 5 minutes max (polling every 5 seconds)
+        const maxAttempts = 5; // 5 minutes max (polling every 5 seconds)
 
         pollInterval = setInterval(async () => {
             attempts++;
